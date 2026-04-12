@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>BrightPath Academy - Admission</title>
+</head>
+<body>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+        <div class="logo">Bright<span>Path</span> Academy</div>
+        <button class="close-btn" onclick="closeMobileMenu()">✕</button>
+    </div>
+    <a href="#admission">Admission Process</a>
+    <a href="#programs">Programs</a>
+    <a href="#dates">Important Dates</a>
+    <a href="#requirements">Requirements</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+    <a href="#apply" style="color:var(--gold);font-weight:500;margin-top:8px">Apply Now →</a>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-inner">
+        <div class="logo">Bright<span>Path</span> Academy</div>
+        <div class="nav-links">
+            <a href="#admission">Admission</a>
+            <a href="#programs">Programs</a>
+            <a href="#dates">Dates</a>
+            <a href="#requirements">Requirements</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <a href="#apply" class="nav-links nav-apply nav-apply-desktop">Apply Now</a>
+        <button class="hamburger" onclick="openMobileMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <h1>Begin Your Journey with Us</h1>
+    <p>Everything students and parents need to know about our admission process — all in one place.</p>
+    <div class="hero-btns">
+        <a href="#apply" class="btn-primary">Apply for 2025–26</a>
+        <a href="#admission" class="btn-outline">Learn the Process</a>
+    </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+    <div class="search-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a9bb0" stroke-width="2"
+            stroke-linecap="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search admission info, deadlines, documents..."
+            oninput="doSearch(this.value)" onfocus="doSearch(this.value)" />
+        <button class="search-btn" onclick="triggerSearch()">Search</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+</div>
+
+<!-- QUICK LINKS -->
+<div class="section" style="padding-top:56px">
+    <div class="divider"></div>
+    <div class="section-title">Quick Access</div>
+    <div class="section-sub">Jump to what you need instantly</div>
+    <div class="quick-grid">
+        <a class="quick-card" href="#apply">
+            <div class="quick-icon">📝</div>
+            <h3>Apply Online</h3>
+        </a>
+        <a class="quick-card" href="#dates">
+            <div class="quick-icon">📅</div>
+            <h3>Key Dates</h3>
+        </a>
+        <a class="quick-card" href="#requirements">
+            <div class="quick-icon">📋</div>
+            <h3>Documents</h3>
+        </a>
+        <a class="quick-card" href="#fees">
+            <div class="quick-icon">💳</div>
+            <h3>Fee Structure</h3>
+        </a>
+        <a class="quick-card" href="#programs">
+            <div class="quick-icon">🎓</div>
+            <h3>Programs</h3>
+        </a>
+        <a class="quick-card" href="#faq">
+            <div class="quick-icon">❓</div>
+            <h3>FAQs</h3>
+        </a>
+        <a class="quick-card" href="#contact">
+            <div class="quick-icon">📞</div>
+            <h3>Contact Us</h3>
+        </a>
+        <a class="quick-card" href="#sitemap">
+            <div class="quick-icon">🗺️</div>
+            <h3>Site Map</h3>
+        </a>
+    </div>
+</div>
+
+<!-- ADMISSION STEPS -->
+<div style="background:var(--light);padding:4px 0" id="admission">
+    <div class="section">
+        <div class="divider"></div>
+        <div class="section-title">Admission Process</div>
+        <div class="section-sub">Follow these steps to complete your application</div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <h3>Explore Programs</h3>
+                <p>Browse our academic offerings to find the right fit for your learning goals and interests.</p>
+                <a class="step-link" href="#programs">View Programs →</a>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <h3>Check Eligibility</h3>
+                <p>Review age, academic, and qualification requirements for your chosen program or grade level.</p>
+                <a class="step-link" href="#requirements">View Requirements →</a>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <h3>Gather Documents</h3>
+                <p>Prepare your mark sheets, identity proof, transfer certificates, and passport-size photos.</p>
+                <a class="step-link" href="#requirements">Checklist →</a>
+            </div>
+            <div class="step-card">
+                <div class="step-num">4</div>
+                <h3>Submit Application</h3>
+                <p>Complete the online form and upload required documents before the deadline.</p>
+                <a class="step-link" href="#apply">Apply Now →</a>
+            </div>
+            <div class="step-card">
+                <div class="step-num">5</div>
+                <h3>Entrance Assessment</h3>
+                <p>Attend the written test and/or interview scheduled by the admissions office.</p>
+                <a class="step-link" href="#dates">View Schedule →</a>
+            </div>
+            <div class="step-card">
+                <div class="step-num">6</div>
+                <h3>Receive Offer</h3>
+                <p>Check your admission status online. If selected, pay the fee to confirm your seat.</p>
+                <a class="step-link" href="#fees">Fee Structure →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- IMPORTANT DATES -->
+<div class="section" id="dates">
+    <div class="divider"></div>
+    <div class="section-title">Important Dates 2025–26</div>
+    <div class="section-sub">Mark your calendar — don't miss these deadlines</div>
+    <div class="dates-grid">
+        <div class="date-card">
+            <div class="date-badge">
+                <div class="month">Jan</div>
+                <div class="day">15</div>
+            </div>
+            <div class="date-info">
+                <h4>Applications Open</h4>
+                <p>Online portal opens for all programs</p>
+                <span class="status-badge status-open">Open Now</span>
+            </div>
+        </div>
+        <div class="date-card">
+            <div class="date-badge">
+                <div class="month">Mar</div>
+                <div class="day">31</div>
+            </div>
+            <div class="date-info">
+                <h4>Application Deadline</h4>
+                <p>Last date to submit completed forms</p>
+                <span class="status-badge status-upcoming">Upcoming</span>
+            </div>
+        </div>
+        <div class="date-card">
+            <div class="date-badge">
+                <div class="month">Apr</div>
+                <div class="day">12</div>
+            </div>
+            <div class="date-info">
+                <h4>Entrance Test</h4>
+                <p>Written assessment for all applicants</p>
+                <span class="status-badge status-upcoming">Upcoming</span>
+            </div>
+        </div>
+        <div class="date-card">
+            <div class="date-badge">
+                <div class="month">Apr</div>
+                <div class="day">25</div>
+            </div>
+            <div class="date-info">
+                <h4>Interview Round</h4>
+                <p>Personal interview for shortlisted students</p>
+                <span class="status-badge status-upcoming">Upcoming</span>
+            </div>
+        </div>
+        <div class="date-card">
+            <div class="date-badge">
+                <div class="month">May</div>
+                <div class="day">10</div>
+            </div>
+            <div class="date-info">
+                <h4>Results Announced</h4>
+                <p>Admission results published on portal</p>
+                <span class="status-badge status-upcoming">Upcoming</span>
+            </div>
+        </div>
+        <div class="date-card">
+            <div class="date-badge">
+                <div class="month">May</div>
+                <div class="day">31</div>
+            </div>
+            <div class="date-info">
+                <h4>Fee Payment Deadline</h4>
+                <p>Confirm seat by paying admission fees</p>
+                <span class="status-badge status-upcoming">Upcoming</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PROGRAMS -->
+<div style="background:var(--light);padding:4px 0" id="programs">
+    <div class="section">
+        <div class="divider"></div>
+        <div class="section-title">Programs Offered</div>
+        <div class="section-sub">Choose the right program for your child</div>
+        <div class="tab-row" id="programTabs">
+            <div class="tab-pill active" onclick="filterPrograms('all',this)">All Programs</div>
+            <div class="tab-pill" onclick="filterPrograms('primary',this)">Primary</div>
+            <div class="tab-pill" onclick="filterPrograms('secondary',this)">Secondary</div>
+            <div class="tab-pill" onclick="filterPrograms('senior',this)">Senior Secondary</div>
+        </div>
+        <div class="programs-grid" id="programsGrid">
+            <div class="program-card" data-cat="primary">
+                <span class="prog-tag">Primary</span>
+                <h3>Junior School (Grades 1–5)</h3>
+                <p>Foundation years focused on literacy, numeracy, and creative thinking in a nurturing environment.</p>
+                <div class="prog-meta">
+                    <span>📅 Age: 6–11</span>
+                    <span>🕐 8 AM – 2 PM</span>
+                </div>
+            </div>
+            <div class="program-card" data-cat="primary">
+                <span class="prog-tag">Primary</span>
+                <h3>Middle School (Grades 6–8)</h3>
+                <p>Bridging elementary to high school with a broader curriculum and co-curricular activities.</p>
+                <div class="prog-meta">
+                    <span>📅 Age: 11–14</span>
+                    <span>🕐 8 AM – 3 PM</span>
+                </div>
+            </div>
+            <div class="program-card" data-cat="secondary">
+                <span class="prog-tag">Secondary</span>
+                <h3>High School (Grades 9–10)</h3>
+                <p>CBSE/State board curriculum with a strong emphasis on board exam preparation.</p>
+                <div class="prog-meta">
+                    <span>📅 Age: 14–16</span>
+                    <span>🕐 8 AM – 3:30 PM</span>
+                </div>
+            </div>
+            <div class="program-card" data-cat="senior">
+                <span class="prog-tag">Senior Secondary</span>
+                <h3>Science Stream (Grades 11–12)</h3>
+                <p>Physics, Chemistry, Biology/Maths — ideal for future engineers and medical professionals.</p>
+                <div class="prog-meta">
+                    <span>📅 Age: 16–18</span>
+                    <span>🕐 8 AM – 4 PM</span>
+                </div>
+            </div>
+            <div class="program-card" data-cat="senior">
+                <span class="prog-tag">Senior Secondary</span>
+                <h3>Commerce Stream (Grades 11–12)</h3>
+                <p>Accounts, Business Studies, Economics — building future entrepreneurs and CAs.</p>
+                <div class="prog-meta">
+                    <span>📅 Age: 16–18</span>
+                    <span>🕐 8 AM – 4 PM</span>
+                </div>
+            </div>
+            <div class="program-card" data-cat="senior">
+                <span class="prog-tag">Senior Secondary</span>
+                <h3>Humanities Stream (Grades 11–12)</h3>
+                <p>History, Political Science, Psychology — for aspiring lawyers, educators, and civil servants.</p>
+                <div class="prog-meta">
+                    <span>📅 Age: 16–18</span>
+                    <span>🕐 8 AM – 4 PM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- REQUIREMENTS -->
+<div class="section" id="requirements">
+    <div class="divider"></div>
+    <div class="section-title">Admission Requirements</div>
+    <div class="section-sub">Prepare these documents and check eligibility before applying</div>
+    <div class="req-wrap">
+        <div class="req-card">
+            <h3>📄 Required Documents</h3>
+            <ul class="req-list">
+                <li>Birth certificate (original + photocopy)</li>
+                <li>Previous school mark sheets / report cards</li>
+                <li>Transfer Certificate (TC) from last school</li>
+                <li>Aadhaar card / Government ID proof</li>
+                <li>Passport-size photographs (4 copies)</li>
+                <li>Address proof (utility bill / rental agreement)</li>
+                <li>Community / caste certificate (if applicable)</li>
+                <li>Completed application form</li>
+            </ul>
+        </div>
+        <div class="req-card">
+            <h3>✅ Eligibility Criteria</h3>
+            <ul class="req-list">
+                <li>Grade 1: Age 6 years as of June 1</li>
+                <li>Grades 2–8: Passed previous grade with min. 50%</li>
+                <li>Grade 9: Min. 55% in Grade 8 final exam</li>
+                <li>Grade 11 Science: Min. 65% in Grade 10, Science</li>
+                <li>Grade 11 Commerce: Min. 55% in Grade 10</li>
+                <li>Grade 11 Humanities: Min. 50% in Grade 10</li>
+                <li>No pending dues at previous institution</li>
+                <li>Good conduct certificate from previous school</li>
+            </ul>
+        </div>
+        <div class="req-card" id="fees">
+            <h3>💳 Fee Structure</h3>
+            <ul class="req-list">
+                <li>Application Fee: ₹500 (non-refundable)</li>
+                <li>Admission Fee: ₹5,000 (one-time)</li>
+                <li>Tuition Fee (Primary): ₹3,500/month</li>
+                <li>Tuition Fee (Secondary): ₹4,500/month</li>
+                <li>Tuition Fee (Sr. Secondary): ₹5,500/month</li>
+                <li>Annual Charges: ₹8,000/year</li>
+                <li>Transportation (optional): ₹1,200/month</li>
+                <li>Scholarships available — ask admissions office</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- APPLY FORM -->
+ <!-- <form action="/submit" method="POST"> -->
+    <form onsubmit="submitForm(event)">
+<div style="background:var(--light);padding:4px 0" id="apply">
+    <div class="section">
+        <div class="divider"></div>
+        <div class="section-title">Start Your Application</div>
+        <div class="section-sub">Fill in the details below and our team will contact you within 48 hours</div>
+        <div style="background:#fff;border:0.5px solid var(--border);border-radius:16px;padding:32px;max-width:680px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+                <div>
+                    <label
+                        style="font-size:.83rem;color:var(--muted);font-weight:500;display:block;margin-bottom:6px">Student
+                        First Name</label>
+                    <input type="text" placeholder="First name" id="firstName"
+                        style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;background:var(--light)"
+                        onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+                </div>
+                <div>
+                    <label
+                        style="font-size:.83rem;color:var(--muted);font-weight:500;display:block;margin-bottom:6px">Student
+                        Last Name</label>
+                    <input type="text" placeholder="Last name" id="lastName"
+                        style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;background:var(--light)"
+                        onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+                <div>
+                    <label
+                        style="font-size:.83rem;color:var(--muted);font-weight:500;display:block;margin-bottom:6px">Grade
+                        Applying For</label>
+                    <select
+                        style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;background:var(--light);color:var(--text)"
+                        onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+                        <option value="" id="grade">Select grade</option>
+                        <option>Grade 1</option>
+                        <option>Grade 2</option>
+                        <option>Grade 3</option>
+                        <option>Grade 4</option>
+                        <option>Grade 5</option>
+                        <option>Grade 6</option>
+                        <option>Grade 7</option>
+                        <option>Grade 8</option>
+                        <option>Grade 9</option>
+                        <option>Grade 10</option>
+                        <option>Grade 11 – Science</option>
+                        <option>Grade 11 – Commerce</option>
+                        <option>Grade 11 – Humanities</option>
+                        <option>Grade 12</option>
+                    </select>
+                </div>
+                <div>
+                    <label
+                        style="font-size:.83rem;color:var(--muted);font-weight:500;display:block;margin-bottom:6px">Date
+                        of Birth</label>
+                    <input type="date" id="dob"
+                        style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;background:var(--light)"
+                        onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+                </div>
+            </div>
+            <div style="margin-bottom:16px">
+                <label
+                    style="font-size:.83rem;color:var(--muted);font-weight:500;display:block;margin-bottom:6px">Parent /
+                    Guardian Name</label>
+                <input type="text" placeholder="Full name of parent or guardian" id="parentName"
+                    style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;background:var(--light)"
+                    onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+                <div>
+                    <label
+                        style="font-size:.83rem;color:var(--muted);font-weight:500;display:block;margin-bottom:6px">Phone
+                        Number</label>
+                    <input type="tel" placeholder="+91 XXXXX XXXXX" id="phone"
+                        style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;background:var(--light)"
+                        onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+                </div>
+                <div>
+                    <label
+                        style="font-size:.83rem;color:var(--muted);font-weight:500;display:block;margin-bottom:6px">Email
+                        Address</label>
+                    <input type="email" placeholder="email@example.com" id="email"
+                        style="width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:8px;font-size:.9rem;outline:none;font-family:inherit;background:var(--light)"
+                        onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+                </div>
+            </div>
+            <button class="btn-primary" type="submit(event)"
+                style="width:100%;padding:13px;font-size:1rem;border-radius:10px">Submit Application</button>
+            <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:10px">Application fee of ₹500 is
+                collected at the admissions office</p>
+        </div>
+    </div>
+</div>
+</form>
+
+<!-- FAQ -->
+<div class="section" id="faq">
+    <div class="divider"></div>
+    <div class="section-title">Frequently Asked Questions</div>
+    <div class="section-sub">Answers to the most common queries from students and parents</div>
+    <div class="faq-wrap">
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is the last date to apply for
+                2025–26? <span class="arrow">▼</span></button>
+            <div class="faq-a">
+                <div class="faq-a-inner">The deadline for submitting your completed application is March 31, 2025. Late
+                    applications may not be considered, so we strongly encourage families to apply well in advance.
+                </div>
+            </div>
+        </div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is an entrance test mandatory for all
+                grades? <span class="arrow">▼</span></button>
+            <div class="faq-a">
+                <div class="faq-a-inner">Grades 1–3 require only an informal interaction. Grades 4 and above require a
+                    written assessment in English and Mathematics. Grade 11 applicants also attend a subject-specific
+                    interview.</div>
+            </div>
+        </div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I apply if my child is transferring
+                mid-year? <span class="arrow">▼</span></button>
+            <div class="faq-a">
+                <div class="faq-a-inner">Mid-year admissions are considered on a seat-availability basis. Contact the
+                    admissions office with your child's Transfer Certificate and latest mark sheet to begin the process.
+                </div>
+            </div>
+        </div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Are scholarships or fee concessions
+                available? <span class="arrow">▼</span></button>
+            <div class="faq-a">
+                <div class="faq-a-inner">Yes, we offer merit-based scholarships (up to 50% fee waiver) and need-based
+                    concessions. Apply for a scholarship at the time of admission and submit supporting income
+                    documents.</div>
+            </div>
+        </div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How will I know if my child is selected?
+                <span class="arrow">▼</span></button>
+            <div class="faq-a">
+                <div class="faq-a-inner">Results are published on the online portal on May 10. You will also receive an
+                    SMS and email notification. Log in with your application number to view the offer letter.</div>
+            </div>
+        </div>
+        <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if I miss the fee payment deadline?
+                <span class="arrow">▼</span></button>
+            <div class="faq-a">
+                <div class="faq-a-inner">Seats not confirmed by May 31 may be offered to waitlisted students. Contact
+                    the admissions office immediately if you face difficulties — we do consider extensions in
+                    exceptional cases.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+    <h2>Ready to Join BrightPath Academy?</h2>
+    <p>Take the first step toward a brighter future. Applications for 2025–26 are open now.</p>
+    <div class="cta-btns">
+        <a href="#apply" class="btn-primary">Apply Online</a>
+        <a href="#contact" class="btn-outline">Talk to Admissions</a>
+    </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+    <div class="divider"></div>
+    <div class="section-title">Contact Admissions</div>
+    <div class="section-sub">We're here to help — reach out any time</div>
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <div class="contact-info">
+                <h4>Visit Us</h4>
+                <p>12 Education Lane, Trichy – 620 001<br>Tamil Nadu, India</p>
+            </div>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <div class="contact-info">
+                <h4>Call Us</h4>
+                <a href="tel:+914312345678">+91 431 234 5678</a><br>
+                <a href="tel:+919876543210">+91 98765 43210</a>
+            </div>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-info">
+                <h4>Email Us</h4>
+                <a href="mailto:admissions@brightpath.edu.in">admissions@brightpath.edu.in</a>
+            </div>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">🕐</div>
+            <div class="contact-info">
+                <h4>Office Hours</h4>
+                <p>Mon–Fri: 9 AM – 5 PM<br>Saturday: 9 AM – 1 PM</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SITEMAP -->
+<div style="background:var(--light);padding:4px 0" id="sitemap">
+    <div class="section">
+        <div class="divider"></div>
+        <div class="section-title">Site Map</div>
+        <div class="section-sub">Navigate every section of this admission portal</div>
+        <div class="sitemap-grid">
+            <div class="sitemap-col">
+                <h4>Admission</h4>
+                <ul>
+                    <li><a href="#admission">Process Overview</a></li>
+                    <li><a href="#apply">Online Application</a></li>
+                    <li><a href="#requirements">Eligibility</a></li>
+                    <li><a href="#requirements">Documents Required</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-col">
+                <h4>Dates & Fees</h4>
+                <ul>
+                    <li><a href="#dates">Important Dates</a></li>
+                    <li><a href="#fees">Fee Structure</a></li>
+                    <li><a href="#faq">Scholarships</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-col">
+                <h4>Programs</h4>
+                <ul>
+                    <li><a href="#programs">Primary (Grades 1–5)</a></li>
+                    <li><a href="#programs">Middle (Grades 6–8)</a></li>
+                    <li><a href="#programs">Secondary (Grades 9–10)</a></li>
+                    <li><a href="#programs">Sr. Secondary (Gr. 11–12)</a></li>
+                </ul>
+            </div>
+            <div class="sitemap-col">
+                <h4>Help & Info</h4>
+                <ul>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="#contact">Contact Admissions</a></li>
+                    <li><a href="#sitemap">Site Map</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div>
+                <div class="footer-logo">Bright<span>Path</span> Academy</div>
+                <div class="footer-tagline">Nurturing minds since 1995 · Trichy, Tamil Nadu</div>
+            </div>
+            <a href="#apply" class="btn-primary" style="font-size:.85rem;padding:10px 20px">Apply Now</a>
+        </div>
+        <div class="footer-copy">© 2025 BrightPath Academy. All rights reserved. · admissions@brightpath.edu.in</div>
+    </div>
+</footer>
+</body>
+</html>
