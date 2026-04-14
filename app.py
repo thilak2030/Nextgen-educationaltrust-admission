@@ -18,10 +18,6 @@ if not os.path.exists(FILE_NAME):
 # Home route
 @app.route('/')
 def home():
-    # Option 1: Simple text response
-    # return "BrightPath Academy Admission Portal is running ✅"
-
-    # Option 2: Serve index.html (recommended)
     return render_template('index.html')
 
 @app.route('/submit', methods=['POST'])
