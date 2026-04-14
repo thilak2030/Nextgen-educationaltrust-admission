@@ -1,21 +1,11 @@
+import psycopg2
 from flask import Flask, request, jsonify, render_template
-from flask_cors import CORS
-from openpyxl import Workbook, load_workbook
 import os
 
 app = Flask(__name__)
-CORS(app)
 
-FILE_NAME = "students.xlsx"
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
-# Create file if not exists
-if not os.path.exists(FILE_NAME):
-    wb = Workbook()
-    ws = wb.active
-    ws.append(["First Name", "Last Name", "Grade", "DOB", "Parent Name", "Phone", "Email"])
-    wb.save(FILE_NAME)
-
-# Home route
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -23,13 +13,24 @@ def home():
 @app.route('/submit', methods=['POST'])
 def submit():
     data = request.json
-
-    # Load excel
-    wb = load_workbook(FILE_NAME)
-    ws = wb.active
-
-    # Add row
-    ws.append([
+    conn = psycopg2.connect(DATABASE_URL)
+    cur = conn.cursor()
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS students (
+            id SERIAL PRIMARY KEY,
+            firstName TEXT,
+            lastName TEXT,
+            grade TEXT,
+            dob TEXT,
+            parentName TEXT,
+            phone TEXT,
+            email TEXT
+        )
+    """)
+    cur.execute("""
+        INSERT INTO students (firstName, lastName, grade, dob, parentName, phone, email)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+    """, (
         data.get("firstName"),
         data.get("lastName"),
         data.get("grade"),
@@ -37,11 +38,8 @@ def submit():
         data.get("parentName"),
         data.get("phone"),
         data.get("email")
-    ])
-
-    wb.save(FILE_NAME)
-
-    return jsonify({"message": "Saved to Excel ✅"})
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    ))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return jsonify({"message": "Saved to Database ✅"})
