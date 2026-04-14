@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from openpyxl import Workbook, load_workbook
 import os
@@ -14,6 +14,15 @@ if not os.path.exists(FILE_NAME):
     ws = wb.active
     ws.append(["First Name", "Last Name", "Grade", "DOB", "Parent Name", "Phone", "Email"])
     wb.save(FILE_NAME)
+
+# Home route
+@app.route('/')
+def home():
+    # Option 1: Simple text response
+    # return "BrightPath Academy Admission Portal is running ✅"
+
+    # Option 2: Serve index.html (recommended)
+    return render_template('index.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
