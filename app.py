@@ -4,42 +4,62 @@ import os
 
 app = Flask(__name__)
 
+# ✅ IMPORTANT: correct environment variable usage
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
+
 @app.route('/submit', methods=['POST'])
 def submit():
-    data = request.json
-    conn = psycopg2.connect(DATABASE_URL)
-    cur = conn.cursor()
-    cur.execute("""
-        CREATE TABLE IF NOT EXISTS students (
-            id SERIAL PRIMARY KEY,
-            firstName TEXT,
-            lastName TEXT,
-            grade TEXT,
-            dob TEXT,
-            parentName TEXT,
-            phone TEXT,
-            email TEXT
-        )
-    """)
-    cur.execute("""
-        INSERT INTO students (firstName, lastName, grade, dob, parentName, phone, email)
-        VALUES (%s, %s, %s, %s, %s, %s, %s)
-    """, (
-        data.get("firstName"),
-        data.get("lastName"),
-        data.get("grade"),
-        data.get("dob"),
-        data.get("parentName"),
-        data.get("phone"),
-        data.get("email")
-    ))
-    conn.commit()
-    cur.close()
-    conn.close()
-    return jsonify({"message": "Saved to Database ✅"})
+    try:
+        data = request.json
+
+        # ✅ connect with ssl (Render ku important)
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        cur = conn.cursor()
+
+        # ✅ create table if not exists
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS students (
+                id SERIAL PRIMARY KEY,
+                firstName TEXT,
+                lastName TEXT,
+                grade TEXT,
+                dob TEXT,
+                parentName TEXT,
+                phone TEXT,
+                email TEXT
+            )
+        """)
+
+        # ✅ insert data
+        cur.execute("""
+            INSERT INTO students (firstName, lastName, grade, dob, parentName, phone, email)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """, (
+            data.get("firstName"),
+            data.get("lastName"),
+            data.get("grade"),
+            data.get("dob"),
+            data.get("parentName"),
+            data.get("phone"),
+            data.get("email")
+        ))
+
+        conn.commit()
+        cur.close()
+        conn.close()
+
+        return jsonify({"message": "Saved to Database ✅"})
+
+    except Exception as e:
+        print("ERROR:", e)  # 👈 log la theriyum
+        return jsonify({"error": str(e)}), 500
+
+
+# ✅ run app
+if __name__ == '__main__':
+    app.run(debug=True)

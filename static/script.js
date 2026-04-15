@@ -72,7 +72,7 @@ function submitForm(event) {
     };
 
     // ✅ Use relative path so it works on Render
-    fetch("/submit", {
+    fetch("https://nextgen-educationaltrust-admission1.onrender.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
@@ -86,7 +86,6 @@ function submitForm(event) {
         console.error(err);
     });
 }
-
 
 function openMobileMenu() { 
     document.getElementById('mobileMenu').classList.add('show'); 
