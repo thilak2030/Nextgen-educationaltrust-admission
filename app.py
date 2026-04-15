@@ -4,24 +4,25 @@ import os
 
 app = Flask(__name__)
 
-# ✅ IMPORTANT: correct environment variable usage
+# ✅ Environment variable (Render la set pannadhu)
 DATABASE_URL = os.environ.get("DATABASE_URL")
+
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
 
+# ✅ FORM SUBMIT (already irundhadhu - fixed version)
 @app.route('/submit', methods=['POST'])
 def submit():
     try:
         data = request.json
 
-        # ✅ connect with ssl (Render ku important)
-        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        conn = psycopg2.connect(DATABASE_URL)
         cur = conn.cursor()
 
-        # ✅ create table if not exists
+        # table create
         cur.execute("""
             CREATE TABLE IF NOT EXISTS students (
                 id SERIAL PRIMARY KEY,
@@ -35,7 +36,7 @@ def submit():
             )
         """)
 
-        # ✅ insert data
+        # insert data
         cur.execute("""
             INSERT INTO students (firstName, lastName, grade, dob, parentName, phone, email)
             VALUES (%s, %s, %s, %s, %s, %s, %s)
@@ -56,10 +57,29 @@ def submit():
         return jsonify({"message": "Saved to Database ✅"})
 
     except Exception as e:
-        print("ERROR:", e)  # 👈 log la theriyum
+        print("ERROR:", e)
         return jsonify({"error": str(e)}), 500
 
 
-# ✅ run app
+# ✅ 🔥 NEW: DATA VIEW PAGE
+@app.route('/data')
+def view_data():
+    try:
+        conn = psycopg2.connect(DATABASE_URL)
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM students ORDER BY id DESC")
+        rows = cur.fetchall()
+
+        cur.close()
+        conn.close()
+
+        return render_template("data.html", data=rows)
+
+    except Exception as e:
+        return f"Error: {e}"
+
+
+# ✅ run
 if __name__ == '__main__':
     app.run(debug=True)
