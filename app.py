@@ -1,11 +1,11 @@
 import psycopg2
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, render_template, redirect
 import os
 
 app = Flask(__name__)
 
-# ✅ Environment variable (Render la set pannadhu)
-DATABASE_URL = os.environ.get("DATABASE_URL")
+# 🔥 IMPORTANT: direct connection (local)
+DATABASE_URL = "postgresql://admission_db_r04k_user:nO1ZKIBEa6Gt6778GtypL2LcKnGOOzpA@dpg-d7eueljbc2fs738f09f0-a.ohio-postgres.render.com/admission_db_r04k"
 
 
 @app.route('/')
@@ -13,55 +13,55 @@ def home():
     return render_template('index.html')
 
 
-# ✅ FORM SUBMIT (already irundhadhu - fixed version)
+# ✅ FORM SUBMIT FIX
 @app.route('/submit', methods=['POST'])
 def submit():
     try:
-        data = request.json
-
         conn = psycopg2.connect(DATABASE_URL)
         cur = conn.cursor()
+        print("FORM DATA:", request.form)
 
         # table create
         cur.execute("""
             CREATE TABLE IF NOT EXISTS students (
                 id SERIAL PRIMARY KEY,
-                firstName TEXT,
-                lastName TEXT,
-                grade TEXT,
-                dob TEXT,
-                parentName TEXT,
+                student_name TEXT,
+                parent_name TEXT,
+                quota TEXT,
+                location TEXT,
+                college TEXT,
                 phone TEXT,
                 email TEXT
             )
         """)
 
-        # insert data
+        # insert
         cur.execute("""
-            INSERT INTO students (firstName, lastName, grade, dob, parentName, phone, email)
+            INSERT INTO students 
+            (student_name, parent_name, quota, location, college, phone, email)
             VALUES (%s, %s, %s, %s, %s, %s, %s)
         """, (
-            data.get("firstName"),
-            data.get("lastName"),
-            data.get("grade"),
-            data.get("dob"),
-            data.get("parentName"),
-            data.get("phone"),
-            data.get("email")
+            request.form.get("student_name"),
+            request.form.get("parent_name"),
+            request.form.get("quota"),
+            request.form.get("location"),
+            request.form.get("college"),
+            request.form.get("phone"),
+            request.form.get("email")
         ))
 
         conn.commit()
         cur.close()
         conn.close()
 
-        return jsonify({"message": "Saved to Database ✅"})
+        return redirect('/data')
 
     except Exception as e:
         print("ERROR:", e)
-        return jsonify({"error": str(e)}), 500
+        return f"Error: {e}"
 
 
-# ✅ 🔥 NEW: DATA VIEW PAGE
+# ✅ VIEW DATA
 @app.route('/data')
 def view_data():
     try:
@@ -69,8 +69,8 @@ def view_data():
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM students ORDER BY id DESC")
-        rows = cur.fetchall()
-
+        rows = cur.fetchall() if cur.rowcount != 0 else []
+        print("DATA:", rows)
         cur.close()
         conn.close()
 
@@ -80,6 +80,5 @@ def view_data():
         return f"Error: {e}"
 
 
-# ✅ run
 if __name__ == '__main__':
     app.run(debug=True)

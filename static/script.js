@@ -105,3 +105,18 @@ document.querySelectorAll('.mobile-menu a').forEach(a =>
         }, 200); 
     })
 );
+// 🎥 VIDEO SMART CONTROL
+window.addEventListener("load", () => {
+    const video = document.querySelector(".bg-video");
+    if (!video) return;
+
+    // small screen → video off
+    if (window.innerWidth < 500) {
+        video.style.display = "none";
+    }
+
+    // data saver ON இருந்தா → video off
+    if (navigator.connection && navigator.connection.saveData) {
+        video.style.display = "none";
+    }
+});
