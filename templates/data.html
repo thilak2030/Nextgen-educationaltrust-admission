@@ -4,33 +4,32 @@
     <title>Student Data</title>
 </head>
 <body>
+    <h2>Student Records</h2>
 
-<h2>All Applications</h2>
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>ID</th>
+            <th>Student Name</th>
+            <th>Parent Name</th>
+            <th>Quota</th>
+            <th>Location</th>
+            <th>College</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>Name</th>
-        <th>Parent</th>
-        <th>Quota</th>
-        <th>Location</th>
-        <th>College</th>
-        <th>Phone</th>
-        <th>Email</th>
-    </tr>
-
-    {% for row in data %}
-    <tr>
-        <td>{{ row[1] }}</td>
-        <td>{{ row[2] }}</td>
-        <td>{{ row[3] }}</td>
-        <td>{{ row[4] }}</td>
-        <td>{{ row[5] }}</td>
-        <td>{{ row[6] }}</td>
-        <td>{{ row[7] }}</td>
-    </tr>
-    {% endfor %}
-
-</table>
-
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>{{ row[7] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

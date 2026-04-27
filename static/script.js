@@ -15,64 +15,56 @@ const searchData = [
     { tag: "Dates", text: "Fee payment deadline – May 31", sub: "Confirm your seat", link: "#dates" },
 ];
 
+// 🔍 SEARCH
 function doSearch(q) {
     const r = document.getElementById('searchResults');
     if (!q || q.length < 2) { r.classList.remove('show'); return; }
+
     const matches = searchData.filter(d =>
         d.text.toLowerCase().includes(q.toLowerCase()) ||
         d.sub.toLowerCase().includes(q.toLowerCase()) ||
         d.tag.toLowerCase().includes(q.toLowerCase())
     ).slice(0, 6);
+
     if (!matches.length) { r.classList.remove('show'); return; }
-    r.innerHTML = matches.map(m => `<div class="search-item" onclick="goTo('${m.link}')"><span class="search-tag">${m.tag}</span><div><div class="search-text">${m.text}</div><div class="search-sub">${m.sub}</div></div></div>`).join('');
+
+    r.innerHTML = matches.map(m =>
+        `<div class="search-item" onclick="goTo('${m.link}')">
+            <span class="search-tag">${m.tag}</span>
+            <div>
+                <div class="search-text">${m.text}</div>
+                <div class="search-sub">${m.sub}</div>
+            </div>
+        </div>`
+    ).join('');
+
     r.classList.add('show');
 }
 
 function goTo(link) {
     document.getElementById('searchResults').classList.remove('show');
     document.getElementById('searchInput').value = '';
-    document.querySelector(link)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelector(link)?.scrollIntoView({ behavior: 'smooth' });
 }
 
-function triggerSearch() {
-    const q = document.getElementById('searchInput').value;
-    if (q) goTo('#' + q); else doSearch('');
-}
-
-document.addEventListener('click', e => {
-    if (!e.target.closest('.search-wrap')) document.getElementById('searchResults').classList.remove('show');
-});
-
-function toggleFaq(btn) {
-    const a = btn.nextElementSibling;
-    const arrow = btn.querySelector('.arrow');
-    const open = a.classList.toggle('open');
-    arrow.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
-}
-
-function filterPrograms(cat, pill) {
-    document.querySelectorAll('.tab-pill').forEach(p => p.classList.remove('active'));
-    pill.classList.add('active');
-    document.querySelectorAll('.program-card').forEach(c => {
-        c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
-    });
-}
-
+// 📩 FORM SUBMIT (FINAL FIX)
 function submitForm(event) {
-    event.preventDefault(); // prevent page reload
+    event.preventDefault();
+    console.log("FORM SUBMITTED");
 
     const data = {
-        firstName: document.getElementById("firstName").value,
-        lastName: document.getElementById("lastName").value,
-        grade: document.getElementById("grade").value,
-        dob: document.getElementById("dob").value,
-        parentName: document.getElementById("parentName").value,
+        student_name: document.getElementById("student_name").value,
+        parent_name: document.getElementById("parent_name").value,
+        quota: document.getElementById("quota").value,
+        location: document.getElementById("location").value,
+        college: document.getElementById("college").value,
         phone: document.getElementById("phone").value,
         email: document.getElementById("email").value
     };
 
-    // ✅ Use relative path so it works on Render
-    fetch("https://nextgen-educationaltrust-admission1.onrender.com/submit", {
+    console.log("DATA:", data);
+
+    fetch("https://nextgen-educationaltrust-admission1.onrender.com/submit", {  // 🔥 LOCAL FIX
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
@@ -80,6 +72,7 @@ function submitForm(event) {
     .then(res => res.json())
     .then(res => {
         alert(res.message || "✅ Submitted Successfully");
+        document.querySelector("form").reset();
     })
     .catch(err => {
         alert("❌ Error submitting form");
@@ -87,35 +80,26 @@ function submitForm(event) {
     });
 }
 
-function openMobileMenu() { 
-    document.getElementById('mobileMenu').classList.add('show'); 
-    document.body.style.overflow = 'hidden'; 
+// 📱 MOBILE MENU
+function openMobileMenu() {
+    document.getElementById('mobileMenu').classList.add('show');
+    document.body.style.overflow = 'hidden';
 }
 
-function closeMobileMenu() { 
-    document.getElementById('mobileMenu').classList.remove('show'); 
-    document.body.style.overflow = ''; 
+function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('show');
+    document.body.style.overflow = '';
 }
 
-document.querySelectorAll('.mobile-menu a').forEach(a => 
-    a.addEventListener('click', () => { 
-        closeMobileMenu(); 
-        setTimeout(() => { 
-            document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' }) 
-        }, 200); 
-    })
-);
-// 🎥 VIDEO SMART CONTROL
+// 🎥 VIDEO CONTROL
 window.addEventListener("load", () => {
     const video = document.querySelector(".bg-video");
     if (!video) return;
 
-    // small screen → video off
     if (window.innerWidth < 500) {
         video.style.display = "none";
     }
 
-    // data saver ON இருந்தா → video off
     if (navigator.connection && navigator.connection.saveData) {
         video.style.display = "none";
     }

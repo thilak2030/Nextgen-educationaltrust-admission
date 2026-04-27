@@ -402,7 +402,6 @@ CSE – Computer Science and Engineering</p>
                    <p>     ECE – Electronics and Communication Engineering</p>
                       <p>  EEE – Electrical and Electronics Engineering</p>
 
-
         </div>
     </div>
 </div>
@@ -449,17 +448,17 @@ CSE – Computer Science and Engineering</p>
 <div class="section" id="apply">
     <div class="section-title">Start Your Application</div>
 
-    <form id="admissionForm">
+    <form id="admissionForm" onsubmit="submitForm(event)">
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
-            <input type="text" id="firstName" placeholder="Student Name" required>
-            <input type="text" id="lastName" placeholder="Parent Name" required>
+            <input type="text" id="student_name" placeholder="Student Name" required>
+<input type="text" id="parent_name" placeholder="Parent Name" required>
         </div>
 
         <br>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
-            <select id="grade" required>
+            <select id="quota" required>
                 <option value="">Are you Intersted In Which Quota</option>
                 <option>Management</option>
                 <option>Government</option>
@@ -469,7 +468,7 @@ CSE – Computer Science and Engineering</p>
 
         <br>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
-            <select id="grade" required>
+            <select id="location" required>
                 <option value="">Which Location Are You Willing To Move For Studing</option>
                 <option>Chennai</option>
                 <option>Kovai(Coimbatore)</option>
@@ -481,7 +480,7 @@ CSE – Computer Science and Engineering</p>
         </div>
         <br>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
-            <input type="tel" id="phone" placeholder="Please enter which college are you willing to study" required>
+            <input type="text" id="college" placeholder="Please enter which college are you willing to study" required>
         </div>
 
         <br>
@@ -499,7 +498,6 @@ CSE – Computer Science and Engineering</p>
 
     </form>
 </div> <!-- 🔥 THIS LINE I ADDED (IMPORTANT FIX) -->
-
 
 <!-- FAQ -->
 <div class="section" id="faq">
