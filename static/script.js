@@ -14,6 +14,18 @@ const searchData = [
     { tag: "Dates", text: "Results announcement – May 10", sub: "Check admission status online", link: "#dates" },
     { tag: "Dates", text: "Fee payment deadline – May 31", sub: "Confirm your seat", link: "#dates" },
 ];
+function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const answer = item.querySelector(".faq-a");
+
+    item.classList.toggle("active");
+
+    if (item.classList.contains("active")) {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+    } else {
+        answer.style.maxHeight = "0px";
+    }
+}
 
 // 🔍 SEARCH
 function doSearch(q) {
