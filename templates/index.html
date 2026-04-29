@@ -467,9 +467,35 @@ CSE – Computer Science and Engineering</p>
         </div>
 
         <br>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
-                <input type="text" id="location" placeholder="Which Location Are You Willing To Move For Studing" required >
-        </div>
+        <div style="display:grid;grid-template-columns:1fr;gap:15px;">
+    
+    <!-- Select box -->
+    <select id="location" onchange="changeToInput(this)" required>
+        <option value="">Which Location Are You Willing To Move For Studing</option>    
+        <option value="Chennai">Chennai</option>
+        <option value="Bangalore">Kovai(Coimbatore)</option>
+        <option value="Hyderabad">Perambalur</option>
+        <option value="Hyderabad">Salem</option>
+        <option value="Hyderabad">Trichy</option>
+        <option value="Other">Other</option>
+    </select>
+
+</div>
+
+<script>
+function changeToInput(select) {
+    if (select.value === "Other") {
+        let input = document.createElement("input");
+        input.type = "text";
+        input.name = "location";
+        input.placeholder = "Enter your location";
+        input.required = true;
+
+        // Replace select with input
+        select.parentNode.replaceChild(input, select);
+    }
+}
+</script>
         <br>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
             <input type="text" id="college" placeholder="Please enter which college are you willing to study" required>
