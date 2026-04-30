@@ -45,6 +45,11 @@
         padding: 0 20px;
         height: 60px
     }
+    .nav-inner {
+    display: flex;
+    justify-content: space-between; /* 🔥 left - right split */
+    align-items: center;
+}
 
     .logo {
         font-family: 'Playfair Display', serif;
@@ -97,7 +102,65 @@
         cursor: pointer;
         flex-direction: column;
         gap: 5px
-    }
+    }/* MOBILE MENU - PREMIUM SLIDE PANEL */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 85%;              /* 👈 panel width */
+    max-width: 320px;
+    height: 100%;
+    background: var(--navy);
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 8px;
+    overflow-y: auto;
+
+    /* 🔥 Animation initial state */
+    transform: translateX(100%);
+    transition: transform 0.35s ease-in-out;
+}
+
+/* SHOW STATE */
+.mobile-menu.show {
+    transform: translateX(0);
+}
+
+/* DARK BACKGROUND OVERLAY */
+.mobile-menu::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+}
+    .hamburger {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    z-index: 1100;.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* CLOSE BUTTON PERFECT TOP RIGHT */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+}
 
     .hamburger span {
         width: 22px;
@@ -950,7 +1013,7 @@
         border-top: 0.5px solid rgba(255, 255, 255, .1)
     }
 
-    /* MOBILE NAV OVERLAY */
+    /* MOBILE NAV OVERLAY
     .mobile-menu {
         display: none;
         position: fixed;
@@ -995,7 +1058,85 @@
         font-size: 22px;
         cursor: pointer;
         line-height: 1
-    }
+    } */
+     /* MOBILE NAV OVERLAY */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: var(--navy);
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 8px;
+    overflow-y: auto;
+
+    /* 🔥 animation base */
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+
+    transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+/* 🔥 OPEN STATE */
+.mobile-menu.show {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+.mobile-menu a {
+    color: rgba(255, 255, 255, .85);
+    text-decoration: none;
+    font-size: 1.05rem;
+    padding: 12px 4px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, .08);
+
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+}
+
+/* 🔥 Animate items one by one */
+.mobile-menu.show a {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.mobile-menu.show a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.show a:nth-child(2) { transition-delay: 0.2s; }
+.mobile-menu.show a:nth-child(3) { transition-delay: 0.3s; }
+.mobile-menu.show a:nth-child(4) { transition-delay: 0.4s; }
+.mobile-menu.show a:nth-child(5) { transition-delay: 0.5s; }
+.mobile-menu.show a:nth-child(6) { transition-delay: 0.6s; }
+.mobile-menu.show a:nth-child(7) { transition-delay: 0.7s; }
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, .15);
+    margin-bottom: 12px;
+
+    position: relative; /* 🔥 important */
+}
+
+.mobile-menu.show .mobile-menu-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
 
     /* PILL TABS */
     .tab-row {
@@ -1075,4 +1216,30 @@
     .logo-text {
         font-size: 0.9rem;
     }
+}
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    width: 80%;
+    height: 100%;
+    background: #0d2b4d;
+    transition: 0.3s ease;
+    z-index: 9999;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0; /* keep 0 */
+    width: 80%;
+    height: 100%;
+    background: #0d2b4d;
+    z-index: 9999;
+
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+}
+
+.mobile-menu.show {
+    transform: translateX(0);
 }

@@ -102,6 +102,11 @@ function closeMobileMenu() {
     document.getElementById('mobileMenu').classList.remove('show');
     document.body.style.overflow = '';
 }
+document.querySelectorAll(".mobile-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        closeMobileMenu();
+    });
+});
 
 // 🎥 VIDEO CONTROL
 window.addEventListener("load", () => {
