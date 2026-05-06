@@ -141,7 +141,9 @@
     position: absolute;
     top: 18px;
     right: 20px;
-    z-index: 1100;.mobile-menu-header {
+    z-index: 1100;
+    }
+    .mobile-menu-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -159,7 +161,6 @@
     color: #fff;
     font-size: 24px;
     cursor: pointer;
-}
 }
 
     .hamburger span {
@@ -1062,22 +1063,22 @@
      /* MOBILE NAV OVERLAY */
 .mobile-menu {
     position: fixed;
-    inset: 0;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
     background: var(--navy);
-    z-index: 1000;
+    z-index: 9999;
 
     display: flex;
     flex-direction: column;
     padding: 20px;
-    gap: 8px;
+    gap: 10px;
     overflow-y: auto;
 
-    /* 🔥 animation base */
     transform: translateX(100%);
-    opacity: 0;
-    pointer-events: none;
-
-    transition: transform 0.4s ease, opacity 0.3s ease;
+    transition: transform 0.4s ease-in-out;
 }
 
 /* 🔥 OPEN STATE */
